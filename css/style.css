@@ -13,19 +13,19 @@
 
 @font-face {
     font-family: "Circular STD";
-    src: url(../fonts/CircularStd-Medium.otf);
+    src: url(fonts/CircularStd-Medium.otf) format("truetype");
     font-weight: var(--normal);
 }
-/* @font-face {
+@font-face {
     font-family: "Circular STD";
-    src: url(../Fonts/CircularStd-Bold.otf) format("truetype");
+    src: url(fonts/CircularStd-Bold.otf) format("truetype");
     font-weight: var(--bold); 
 }
 @font-face {
     font-family: "Circular STD";
-    src: url(../Fonts/CircularStd-BookItalic.otf) format("truetype");
+    src: url(fonts/CircularStd-BookItalic.otf) format("truetype");
     font-weight: var(--bookItalics);
-} */
+}
 
 
 * {
