@@ -16,7 +16,7 @@
     src: url(fonts/CircularStd-Medium.otf);
     font-weight: var(--normal);
 }
-/* @font-face {
+@font-face {
     font-family: "Circular STD";
     src: url(fonts/CircularStd-Bold.otf);
     font-weight: var(--bold); 
@@ -25,7 +25,7 @@
     font-family: "Circular STD";
     src: url(fonts/CircularStd-BookItalic.otf);
     font-weight: var(--bookItalics);
-} */
+}
 
 
 * {
