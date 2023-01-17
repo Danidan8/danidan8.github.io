@@ -1,0 +1,29 @@
+
+<div  class="page lend-page">
+    <h1>Lend new item</h1>
+    <form>
+
+        <input type="text" class="new-item-name" placeholder="What item are you lending?">
+        <input type="text" class="new-item-location" placeholder="Where?">
+        <input type="number" placeholder="How much does it cost?">
+
+        <input type="text" class="new-date-input" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+        <input type="text" class="new-date-input" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+        
+
+        <input type="file" class="new-item-image" placeholder="Image">
+        <textarea name="description" placeholder="Description"></textarea>
+        
+        <button>Submit</button>
+    </form>
+
+    <div class="lent-items">
+        <h1>Items you've already lent</h1>
+
+        <div class="items">
+            <div class="available-item"><img src="imgs/item-sample.png" alt="item"s></div>
+            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+        </div>
+    </div>
+</div>

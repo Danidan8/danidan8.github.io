@@ -1,1 +1,120 @@
-something
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Sharing is Caring</title>
+        <!-- meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- JQUERY import-->
+        <script src="js/lib/jquery-3.5.1.min.js"></script>
+        <!-- W3 import-->
+        <script src="js/lib/w3include.js"></script>
+        <!-- UIKIT imports-->
+        <link rel="stylesheet" href="css/lib/uikit.min.css" />
+        <script src="js/lib/uikit.min.js"></script>
+        <script src="js/lib/uikit-icons.min.js"></script>
+        <!-- ANIMISTA imports-->
+        <link rel="stylesheet" type="text/css" href="css/lib/animista.css">
+        <!-- BORIS imports-->
+        <script src="js/lib/boris.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/lib/boris.css">
+        
+        <!-- YOUR OWN imports-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="js/script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <nav class="uk-navbar-container main-nav" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-active"><a href="#">BORROW</a></li>
+                        <li class="uk-parent"><a href="#">LEND</a></li>
+                        <li><a href="#">ACCOUNT</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header> 
+        <main class-in="show" class-out="hide">
+        </main>
+        <footer>
+        </footer>
+
+        <section id="template" hidden>
+            <!-- <section w3-include-html="page-borrow.html"></section> -->
+            <section><div class="page borrow-page">
+                <nav class="search-for-item">
+                    <input type="text" placeholder="What are you looking for?">
+                    <input type="text" placeholder="Where?">
+                    <!-- <label for="input">When?</label> -->
+                    <input type="text" placeholder="When?" onfocus="(this.type='date')" onblur="(this.type='text')">
+                    <button>Search</button>
+                </nav>
+            
+                <div class="items">
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                </div>
+            
+                <nav class="items-nav">
+                    <button class="prev">prev</button>
+            
+                    <div class="dots">
+                        <div class="dot active-dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    
+                    <button class="next">next</button>
+            
+                </nav>
+            </div>
+            
+            </section>
+
+            <!-- <section w3-include-html="page-lend.html"></section> -->
+            <section>
+                <div  class="page lend-page">
+                    <h1>Lend new item</h1>
+                    <form>
+                
+                        <input type="text" class="new-item-name" placeholder="What item are you lending?">
+                        <input type="text" class="new-item-location" placeholder="Where?">
+                        <input type="number" placeholder="How much does it cost?">
+                
+                        <input type="text" class="new-date-input" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                        <input type="text" class="new-date-input" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
+                        
+                
+                        <input type="file" class="new-item-image" placeholder="Image">
+                        <textarea name="description" placeholder="Description"></textarea>
+                        
+                        <button>Submit</button>
+                    </form>
+                
+                    <div class="lent-items">
+                        <h1>Items you've already lent</h1>
+                
+                        <div class="items">
+                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"s></div>
+                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                        </div>
+                    </div>
+                </div></section>
+            <section w3-include-html="page-profile.html"></section>
+        </section>
+
+        <div class="overlay">
+            <img src="imgs/ItemPageDesign.png" alt="overlay">
+            <img src="imgs/x-icon.png" alt="x" class="x-button">
+        </div>
+    </body>
+</html>
