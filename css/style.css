@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: "Circular STD";
-    src: url(fonts/CircularStd-Medium.otf);
+    src: url(../fonts/CircularStd-Medium.otf);
     font-weight: var(--normal);
 }
 /* @font-face {
