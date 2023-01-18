@@ -40,7 +40,7 @@
         </main>
         <footer>
         </footer>
-
+        
         <section id="template" hidden>
             <!-- <section w3-include-html="page-borrow.html"></section> -->
             <section><div class="page borrow-page">
@@ -51,21 +51,21 @@
                     <input type="text" placeholder="When?" onfocus="(this.type='date')" onblur="(this.type='text')">
                     <button>Search</button>
                 </nav>
-            
+                
                 <div class="items">
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                    <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item rentable-item"><img src="imgs/item-sample.png" alt="item"></div>
                 </div>
-            
+                
                 <nav class="items-nav">
                     <button class="prev">prev</button>
-            
+                    
                     <div class="dots">
                         <div class="dot active-dot"></div>
                         <div class="dot"></div>
@@ -74,22 +74,22 @@
                     </div>
                     
                     <button class="next">next</button>
-            
+                    
                 </nav>
             </div>
             
-            </section>
+        </section>
 
             <!-- <section w3-include-html="page-lend.html"></section> -->
             <section>
                 <div  class="page lend-page">
                     <h1>Lend new item</h1>
                     <form>
-                
+                        
                         <input type="text" class="new-item-name" placeholder="What item are you lending?">
                         <input type="text" class="new-item-location" placeholder="Where?">
                         <input type="number" placeholder="How much does it cost?">
-                
+                        
                         <input type="text" class="new-date-input" placeholder="Start Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                         <input type="text" class="new-date-input" placeholder="End Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                         
@@ -99,24 +99,64 @@
                         
                         <button>Submit</button>
                     </form>
-                
+                    
                     <div class="lent-items">
-                        <h1>Items you've already lent</h1>
-                
+                        <h1>Your Items Available for Renting:</h1>
+                        
                         <div class="items">
-                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"s></div>
-                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
-                            <div class="available-item"><img src="imgs/item-sample.png" alt="item"></div>
+                            <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"s></div>
+                            <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
+                            <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section w3-include-html="page-profile.html"></section>
+            
+            <!-- <section w3-include-html="page-profile.html"></section> -->
+            <section>
+                <div  class="page profile-page">
+                <h1>Account Details</h1>
+                <div class="account-details">
+                    <img src="imgs/RegularLogo_Sqare.jpg" alt="icon" class="user-photo">
+                    <p class="account-info">Username: Danidan</p>
+                    <p class="account-info">Name: Dan Markov</p>
+                    <p class="account-info">Email: danidan@fakemail.com</p>
+                    <!-- <button class="edit-button">Edit Details</button> -->
+                </div>
+            <br><br>
+                <h1>Items you've lent</h1>
+                <div class="items">
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"s></div>
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
+                </div>
+                <br><br>
+                <h1>Items you are renting</h1>
+                <div class="items">
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"s></div>
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
+                    <div class="available-item lent-item"><img src="imgs/item-sample.png" alt="item"></div>
+                </div>
+                
+            </div>
         </section>
-
+        
+        </section>
+        
         <div class="overlay">
-            <img src="imgs/ItemPageDesign.png" alt="overlay">
+            <img src="imgs/LentItemPageDesign.png" alt="overlay" class="overlay-img">
+            <button class="contact-owner-button">Contact the owner</button>
             <img src="imgs/x-icon.png" alt="x" class="x-button">
+
+            <form class="overlay-form">
+                <img src="imgs/back-arrow.png" alt="back-arrow" class="back-arrow">
+                <h1>Your message:</h1>
+                <textarea></textarea>
+                <button class="send-button">Send Message</button>
+            </form>
         </div>
+
+        <img src="imgs/SignOutIcon.png" alt="SignOutIcon" class="sign-out">
+        
     </body>
 </html>
