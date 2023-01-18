@@ -53,7 +53,7 @@ section{
 
 nav.main-nav {
     padding-left: 20px;
-    background-color: red !important;
+    background-color: var(--brown) !important;
     border-bottom: 1px var(--black) solid;
     box-shadow: 0 2px 10px 0px var(--gray);
     z-index: -1;

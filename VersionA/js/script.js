@@ -31,12 +31,15 @@ function backArrow(e) {
 }
 
 $('.main-search-button').click(search);
-function search(e) { 
-    e.preventDefault();
 
-    if($('.main-input').val().toLowerCase() == 'mouse'){
+function search(e) { 
+    if($('.main-input').val().toLowerCase() == 'mouse' && $('.where-input').val().toLowerCase() == 'enschede' && $('.when-input').val()){
         $('.random-items').css('display', 'none');
         $('.mice').css('display', 'flex');
-        $('.main-input').val('')
+        $('.main-input').val('');
+        $('.where-input').val('');
+        $('.when-input').val('');
+    }else{
+        alert('Please fill out all fields properly')
     }
 }
