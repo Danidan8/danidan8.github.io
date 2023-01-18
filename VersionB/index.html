@@ -46,10 +46,39 @@
             <!-- <section w3-include-html="page-borrow.html"></section> -->
             <section><div class="page borrow-page">
                 <nav class="search-for-item">
-                    <input type="text" placeholder="What are you looking for?" class="main-input">
-                    <input type="text" placeholder="Where?">
+                    <input type="text" placeholder="What are you looking for?" class="main-input" list="item-suggestions">
+                    <datalist id="item-suggestions">
+                        <option value="Mouse">
+                        <option value="Board Games">
+                        <option value="Keyboard">
+                        <option value="Clothes">
+                        <option value="Instruments">
+                    </datalist>
+
+                    <input type="text" placeholder="Where?" list="location-suggestions" class="where-input">
+                    <datalist id="location-suggestions">
+                        <option value="Almere">
+                        <option value="Amsterdam">
+                        <option value="Arnhem">
+                        <option value="Baarle-Nassau">
+                        <option value="Breda">
+                        <option value="Delft">
+                        <option value="Eindhoven">
+                        <option value="Enschede">
+                        <option value="Gouda">
+                        <option value="Groningen">
+                        <option value="Haarlem">
+                        <option value="Leiden">
+                        <option value="Maastricht">
+                        <option value="Nijmegen">
+                        <option value="Rotterdam">
+                        <option value="The Hague">
+                        <option value="Tilburg">
+                        <option value="Utrecht">
+                        <option value="Zwolle">
+                    </datalist>
                     <!-- <label for="input">When?</label> -->
-                    <input type="text" placeholder="When?" onfocus="(this.type='date')" onblur="(this.type='text')">
+                    <input type="text" placeholder="When?" onfocus="(this.type='date')" onblur="(this.type='text')" class="when-input">
                     <button class="main-search-button">Search</button>
                 </nav>
                 
