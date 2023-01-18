@@ -1,3 +1,5 @@
+$('.mice').css('display', 'none');
+
 $('.x-button').click(removeOverlay);
 $('.send-button').click(removeOverlay);
 // $('html').keypress(removeOverlay);
@@ -8,28 +10,12 @@ function removeOverlay(e) {
     
 }
 
-
-// $('.available-item>img').click(addOverlay);
-
-// function addOverlay(e) { 
-//     e.preventDefault();
-//     $('.overlay').css('display', 'flex');
-// }
-
-$('.rentable-item>img').click(OverlayToRentable);
+$('.mouse>img').click(OverlayToRentable);
 function OverlayToRentable(e){
     e.preventDefault();
     $('.contact-owner-button').css('visibility', 'visible');
     $('.overlay').css('display', 'flex');
     $('form.overlay-form').css('visibility', 'hidden');
-}
-
-$('.lent-item>img').click(OverlayToLent);
-function OverlayToLent(e){
-    e.preventDefault();
-    $('.contact-owner-button').css('visibility', 'hidden');
-    $('.overlay').css('display', 'flex');
-    $('form.overlay-form').css('display', 'none');
 }
 
 $('.contact-owner-button').click(openMessageSender);
@@ -44,3 +30,13 @@ function backArrow(e) {
     $('form.overlay-form').css('visibility', 'hidden');   
 }
 
+$('.main-search-button').click(search);
+function search(e) { 
+    e.preventDefault();
+
+    if($('.main-input').val().toLowerCase() == 'mouse'){
+        $('.random-items').css('display', 'none');
+        $('.mice').css('display', 'flex');
+        $('.main-input').val('')
+    }
+}
