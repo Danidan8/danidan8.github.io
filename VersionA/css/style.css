@@ -13,17 +13,17 @@
 
 @font-face {
     font-family: "Circular STD";
-    src: url(fonts/CircularStd-Medium.otf);
+    src: url(../fonts/CircularStd-Medium.otf) format("truetype");
     font-weight: var(--normal);
 }
 @font-face {
     font-family: "Circular STD";
-    src: url(fonts/CircularStd-Bold.otf);
+    src: url(../fonts/CircularStd-Bold.otf) format("truetype");
     font-weight: var(--bold); 
 }
 @font-face {
     font-family: "Circular STD";
-    src: url(fonts/CircularStd-BookItalic.otf);
+    src: url(../fonts/CircularStd-BookItalic.otf) format("truetype");
     font-weight: var(--bookItalics);
 }
 
