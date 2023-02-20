@@ -1,6 +1,12 @@
 .output1::before{
-    content: "Motion: ";
+    content: "Alpha: ";
 }
 .output2::before{
-    content: "Orientation: ";
+    content: "Beta: ";
+}
+.output4::before{
+    content: "Gamma: ";
+}
+.output5::before{
+    content: "Absoute: ";
 }
