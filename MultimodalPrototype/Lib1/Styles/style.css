@@ -1,6 +1,6 @@
 .output1::before{
-    content: "Motion:";
+    content: "Motion: ";
 }
 .output2::before{
-    content: "Orientation:";
+    content: "Orientation: ";
 }
