@@ -35,19 +35,19 @@ function setup(){
 }
 
 function draw(){
-  console.log("Roll: " + roll + " Pitch: " + pitch);
-  console.log("X: " + x + " Y: " + y);
+  // console.log("Roll: " + roll + " Pitch: " + pitch);
+  // console.log("X: " + x + " Y: " + y);
   background(colorR, colorG, colotB);
   ellipse(x, y, 10, 10);
   
-  if (roll > 0){
+  if (roll > 1){
     x+=1;
-  }else if (roll < 0){
+  }else if (roll < -1){
     x-=1
   }
-  if (pitch > 0){
+  if (pitch > 1){
     y+=1;
-  }else if (pitch < 0){
+  }else if (pitch < -1){
     y-=1
   }
 }
