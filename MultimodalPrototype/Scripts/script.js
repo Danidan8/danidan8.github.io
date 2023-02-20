@@ -1,14 +1,16 @@
 var gn = new GyroNorm();
 let y = 50;
+let roll,pitch;
 
 gn.init().then(function(){
   gn.start(function(data){
   
-    $('.output1').html(data.do.alpha);
-    $('.output2').html(data.do.beta);
-    $('.output4').html(data.do.gamma);
-    $('.output5').html(data.do.absolute);
-    y = y + data.dm.x;
+    $('.output1').html(data.do.alpha); //Yaw
+    $('.output2').html(data.do.beta); //Pitch
+    $('.output4').html(data.do.gamma); //Roll
+
+    roll = data.do.gamma;
+    pitch = data.do.beta;
 
 });
 }).catch(function(e){
@@ -33,7 +35,7 @@ function setup(){
 function draw(){
   speach.continuous = true;
   background(colorR, colorG, colotB);
-  ellipse(50, y, 10, 10);
+  ellipse(100/roll, 100/pitch, 10, 10);
   // y+=1;
 }
 

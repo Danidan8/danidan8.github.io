@@ -1,12 +1,9 @@
 .output1::before{
-    content: "Alpha: ";
+    content: "Yaw: ";
 }
 .output2::before{
-    content: "Beta: ";
+    content: "Pitch: ";
 }
 .output4::before{
-    content: "Gamma: ";
-}
-.output5::before{
-    content: "Absoute: ";
+    content: "Roll: ";
 }
