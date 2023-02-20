@@ -1,12 +1,12 @@
 var gn = new GyroNorm();
-let y = 50;
+let x,y;
 let roll,pitch;
 
 gn.init().then(function(){
   gn.start(function(data){
 
-    roll = (((data.do.gamma + 180)/360)*100);
-    pitch = (((data.do.beta + 180)/360)*100);
+    roll = data.do.gamma;
+    pitch = data.do.beta;
   
     $('.output1').html(data.do.alpha); //Yaw
     $('.output2').html(pitch); //Pitch
@@ -36,8 +36,18 @@ function setup(){
 
 function draw(){
   background(colorR, colorG, colotB);
-  ellipse(roll, pitch, 10, 10);
-  // y+=1;
+  ellipse(x, y, 10, 10);
+  
+  if (roll > 0){
+    x+=1;
+  }else if (roll < 0){
+    x-=1
+  }
+  if (pitch > 0){
+    y+=1;
+  }else if (pitch < 0){
+    y-=1
+  }
 }
 
 function parseResult(){
