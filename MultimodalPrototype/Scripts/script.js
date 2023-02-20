@@ -1,5 +1,6 @@
 var gn = new GyroNorm();
-let x,y = 50;
+let x = 50
+let y = 50;
 let roll,pitch;
 
 gn.init().then(function(){
@@ -14,7 +15,7 @@ gn.init().then(function(){
 
 });
 }).catch(function(e){
-    console.log("Not Supported")
+    console.log("Not Supported");
   });
 
 //-------------------------------------------------
@@ -29,12 +30,13 @@ myRec.interimResults = true;
 
 function setup(){
   createCanvas(100, 100);
-  // speach.onResult = parseResult;
   speach.onError = spitError;
   speach.start();
 }
 
 function draw(){
+  console.log("Roll: " + roll + " Pitch: " + pitch);
+  console.log("X: " + x + " Y: " + y);
   background(colorR, colorG, colotB);
   ellipse(x, y, 10, 10);
   
