@@ -37,11 +37,8 @@ function draw(){
 }
 
 function parseResult(){
-  // if(speach.resultValue==true){
-  //   $('.output3').html(speach.resultString);
-  //   console.log(speach.resultString);
-  // }
   var mostRecentWord = speach.resultString.split(' ').pop().toLowerCase();
+  $('.output3').html(mostRecentWord);
   console.log(mostRecentWord);
   if(mostRecentWord.indexOf("yellow")!==-1){colorR=238; colorG = 255; colotB = 0;}
   else if(mostRecentWord.indexOf("red")!==-1){colorR=255; colorG = 0; colotB = 13;}
