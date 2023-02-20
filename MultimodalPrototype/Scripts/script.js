@@ -1,5 +1,5 @@
 var gn = new GyroNorm();
-let x,y;
+let x,y = 50;
 let roll,pitch;
 
 gn.init().then(function(){
