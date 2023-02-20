@@ -31,8 +31,8 @@ function setup(){
 
 function draw(){
   background(colorR, colorG, colotB);
-  ellipse(50, y, 10, 10);
-  y+=1;
+  ellipse(50, 50, 10, 10);
+  // y+=1;
 }
 
 function parseResult(){
