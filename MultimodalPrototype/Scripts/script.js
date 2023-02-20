@@ -9,8 +9,8 @@ gn.init().then(function(){
     $('.output2').html(data.do.beta); //Pitch
     $('.output4').html(data.do.gamma); //Roll
 
-    roll = data.do.gamma;
-    pitch = data.do.beta;
+    roll = data.do.gamma + 180;
+    pitch = data.do.beta + 180;
 
 });
 }).catch(function(e){
@@ -35,7 +35,7 @@ function setup(){
 function draw(){
   speach.continuous = true;
   background(colorR, colorG, colotB);
-  ellipse(100/roll, 100/pitch, 10, 10);
+  ellipse(roll/100, pitch/100, 10, 10);
   // y+=1;
 }
 
