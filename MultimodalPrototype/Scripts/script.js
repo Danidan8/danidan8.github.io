@@ -24,6 +24,8 @@ let colorR = 153;
 let colorG = 153;
 let colotB = 153;
 
+let tiltThreshold = 3;
+
 let speach = new p5.SpeechRec('en-US', parseResult);
 speach.continuous = true;
 myRec.interimResults = true;
@@ -40,14 +42,14 @@ function draw(){
   background(colorR, colorG, colotB);
   ellipse(x, y, 10, 10);
   
-  if (roll > 1){
+  if (roll > tiltThreshold){
     x+=1;
-  }else if (roll < -1){
+  }else if (roll < -tiltThreshold){
     x-=1
   }
-  if (pitch > 1){
+  if (pitch > tiltThreshold){
     y+=1;
-  }else if (pitch < -1){
+  }else if (pitch < -tiltThreshold){
     y-=1
   }
 }
