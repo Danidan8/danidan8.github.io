@@ -1,10 +1,12 @@
 var gn = new GyroNorm();
+let y = 0;
 
 gn.init().then(function(){
   gn.start(function(data){
   
     $('.output1').html(data.dm.x);
     $('.output2').html(data.do.alpha);
+    y = y + data.dm.x;
 
 });
 }).catch(function(e){
@@ -13,7 +15,6 @@ gn.init().then(function(){
 
 //-------------------------------------------------
 
-let y = 0;
 let colorR = 153;
 let colorG = 153;
 let colotB = 153;
@@ -32,9 +33,6 @@ function draw(){
   background(colorR, colorG, colotB);
   ellipse(50, y, 10, 10);
   y+=1;
-  if (y>height){
-    y = 0;
-  }
 }
 
 function parseResult(){
