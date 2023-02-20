@@ -5,8 +5,8 @@ let roll,pitch;
 gn.init().then(function(){
   gn.start(function(data){
 
-    roll = (data.do.gamma + 180)/100;
-    pitch = (data.do.beta + 180)/100;
+    roll = (data.do.gamma + 180);
+    pitch = (data.do.beta + 180);
   
     $('.output1').html(data.do.alpha); //Yaw
     $('.output2').html(pitch); //Pitch
