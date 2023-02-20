@@ -1,11 +1,13 @@
 var gn = new GyroNorm();
-let y = 0;
+let y = 50;
 
 gn.init().then(function(){
   gn.start(function(data){
   
-    $('.output1').html(data.dm.x);
-    $('.output2').html(data.do.alpha);
+    $('.output1').html(data.do.alpha);
+    $('.output2').html(data.do.beta);
+    $('.output4').html(data.do.gamma);
+    $('.output5').html(data.do.absolute);
     y = y + data.dm.x;
 
 });
@@ -20,7 +22,6 @@ let colorG = 153;
 let colotB = 153;
 
 let speach = new p5.SpeechRec('en-US', parseResult);
-speach.continuous = true;
 
 function setup(){
   createCanvas(100, 100);
@@ -30,8 +31,9 @@ function setup(){
 }
 
 function draw(){
+  speach.continuous = true;
   background(colorR, colorG, colotB);
-  ellipse(50, 50, 10, 10);
+  ellipse(50, y, 10, 10);
   // y+=1;
 }
 
