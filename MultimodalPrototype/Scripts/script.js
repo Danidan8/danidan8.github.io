@@ -24,6 +24,7 @@ speach.continuous = true;
 function setup(){
   createCanvas(100, 100);
   // speach.onResult = parseResult;
+  speach.onError = spitError;
   speach.start();
 }
 
@@ -44,4 +45,8 @@ function parseResult(){
   else if(mostRecentWord.indexOf("red")!==-1){colorR=255; colorG = 0; colotB = 13;}
   else if(mostRecentWord.indexOf("grey")!==-1){colorR=153; colorG = 153; colotB = 153;}
   else if(mostRecentWord.indexOf("purple")!==-1){colorR=255; colorG = 0; colotB = 221;}
+}
+
+function spitError(){
+  console.log("Error");
 }
