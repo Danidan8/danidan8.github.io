@@ -4,13 +4,13 @@ let roll,pitch;
 
 gn.init().then(function(){
   gn.start(function(data){
+
+    roll = (data.do.gamma + 180)/100;
+    pitch = (data.do.beta + 180)/100;
   
     $('.output1').html(data.do.alpha); //Yaw
-    $('.output2').html(data.do.beta); //Pitch
-    $('.output4').html(data.do.gamma); //Roll
-
-    roll = data.do.gamma + 180;
-    pitch = data.do.beta + 180;
+    $('.output2').html(pitch); //Pitch
+    $('.output4').html(roll); //Roll
 
 });
 }).catch(function(e){
@@ -24,6 +24,8 @@ let colorG = 153;
 let colotB = 153;
 
 let speach = new p5.SpeechRec('en-US', parseResult);
+speach.continuous = true;
+myRec.interimResults = true;
 
 function setup(){
   createCanvas(100, 100);
@@ -33,9 +35,8 @@ function setup(){
 }
 
 function draw(){
-  speach.continuous = true;
   background(colorR, colorG, colotB);
-  ellipse(roll/100, pitch/100, 10, 10);
+  ellipse(roll, pitch, 10, 10);
   // y+=1;
 }
 
