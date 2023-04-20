@@ -36,7 +36,7 @@ function setup(){
   speech.onError = spitError;
   speech.onStart = recStart;
   speech.onEnd = recEnd;
-  speech.onResult = parseResult;
+  // speech.onResult = parseResult;
   $('body').click(function (e) { 
     e.preventDefault();
     if(timerAngle == 360){speech.start();} 
@@ -163,6 +163,7 @@ function recStart(){
 }
 
 function recEnd(){
-  console.log("Recording Ended");
   isRecording = false;
+  parseResult();
+  console.log("Recording Ended");
 }
