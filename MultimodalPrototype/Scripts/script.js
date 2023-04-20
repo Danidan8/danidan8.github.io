@@ -29,29 +29,31 @@ let timerAngle = 0;
 
 let ball;
 
-let soundSlide, soundPow, soundPing, soundGameOver;
+let soundPowerUpSuccess, soundPowerUpFail, soundPing, soundGameOver;
 
 function preload(){
-  soundSlide = loadSound('Sounds/Sliding.mp3')
+  soundPowerUpSuccess = loadSound('Sounds/Ding.mp3');
+  soundPowerUpFail = loadSound('Sounds/Fail.mp3')
+  soundPing = loadSound('Sounds/PingPong.mp3');
+  soundGameOver = loadSound('Sounds/GameOver.mp3');
 }
 
 function setup(){
+  ball = new Ball();
+
   createCanvas(windowWidth, windowHeight);
   speech.onError = spitError;
   speech.onStart = recStart;
   speech.onEnd = recEnd;
-  // speech.onResult = parseResult;
   $('body').click(function (e) { 
     e.preventDefault();
-    if(timerAngle == 360){speech.start();} 
-    soundSlide.play();
+    if(timerAngle == 360 && ball.isAlive){speech.start();} 
   });
   
   paddleX = width/2;  
-  paddleY = height/2;
+  paddleY = height/2;  
   
-  ball = new Ball();
-  
+  soundPing.setVolume(0.3);
 }
 
 function draw(){
@@ -67,20 +69,23 @@ function draw(){
   stroke(150);
   strokeWeight(10);
   line(0,height/2,width,height/2);
-
+  
   stroke(0);
   
+  
   //Move Paddle
-  paddle(paddleX,paddleY)
-  if ((roll > tiltThreshold) && (paddleX < width-40)){
-    paddleX += paddleSpeed;
-  }else if ((roll < -tiltThreshold) && (paddleX > 40)){
-    paddleX -= paddleSpeed
-  }
-  if ((pitch > tiltThreshold) && (paddleY < height-40)){
-    paddleY += paddleSpeed;
-  }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
-    paddleY -= paddleSpeed;
+  if(ball.isAlive){
+    paddle(paddleX,paddleY)
+    if ((roll > tiltThreshold) && (paddleX < width-40)){
+      paddleX += paddleSpeed;
+    }else if ((roll < -tiltThreshold) && (paddleX > 40)){
+      paddleX -= paddleSpeed
+    }
+    if ((pitch > tiltThreshold) && (paddleY < height-40)){
+      paddleY += paddleSpeed;
+    }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
+      paddleY -= paddleSpeed;
+    }
   }
 
   //Ball
@@ -154,22 +159,30 @@ function parseResult(){
   console.log(recordingResult);
 
   if(recordingResult == "faster"){
-    timerAngle = 0;
+    successfullPowerUp()
     paddleSpeed += 1;
   }
   else if(recordingResult == "slower"){
-    timerAngle = 0;
+    successfullPowerUp()
     paddleSpeed -= 1;
   }
   else if(recordingResult == "stop"){
-    timerAngle = 0;
+    successfullPowerUp()
     ball.desitinationX = ball.x;
     ball.desitinationY = ball.y;
   }
   else if(recordingResult == "fly"){
-    timerAngle = 0;
+    successfullPowerUp()
     ball.z = ball.zMax;
+  }else{
+    soundPowerUpFail.play();
   }
+}
+
+function successfullPowerUp(){
+  timerAngle = 0;
+  soundPowerUpSuccess.play();
+
 }
 
 function spitError(){
