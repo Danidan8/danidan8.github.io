@@ -32,7 +32,7 @@ let ball;
 let soundSlide, soundPow, soundPing, soundGameOver;
 
 function preload(){
-  soundSlide = loadSound('../Sounds/Sliding.mp3')
+  soundSlide = loadSound('Sounds/Sliding.mp3')
 }
 
 function setup(){
@@ -44,6 +44,7 @@ function setup(){
   $('body').click(function (e) { 
     e.preventDefault();
     if(timerAngle == 360){speech.start();} 
+    soundSlide.play();
   });
   
   paddleX = width/2;  
@@ -51,7 +52,6 @@ function setup(){
   
   ball = new Ball();
   
-  soundSlide.play();
 }
 
 function draw(){
