@@ -28,14 +28,14 @@ class Ball{
     }
 
     move(){
-        if (!Math.abs(this.desitinationX-this.x)<=2){
+        if (!(Math.abs(this.desitinationX-this.x)<=2)){
             if(this.x < this.desitinationX){
                 this.x += this.speedXY;
             } else if (this.x > this.desitinationX){
                 this.x -= this.speedXY;
             }
         }
-        if (!Math.abs(this.desitinationY-this.y)<=2){
+        if (!(Math.abs(this.desitinationY-this.y)<=2)){
             if(this.y < this.desitinationY){
                 this.y += this.speedXY;
             } else if (this.y > this.desitinationY){
