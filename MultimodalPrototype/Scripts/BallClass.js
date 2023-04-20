@@ -7,7 +7,9 @@ class Ball{
         this.zMin = 0;
         this.diameter;
         this.speedXY;
-        this.color = color(240);
+        this.colorR = 240;
+        this.colorG = 240;
+        this.colorB = 240;
         this.speedZ = 1;
         this.falling = false;
         this.alive = true;
@@ -42,7 +44,10 @@ class Ball{
                 this.falling = false;
             }else{
               this.alive = false;
-              this.color = color(255,0,0); 
+              this.colorR = 255;
+              this.colorG = 0;
+              this.colorR = 0;
+
             }
         }
     }

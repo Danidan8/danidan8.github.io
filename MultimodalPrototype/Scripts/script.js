@@ -53,7 +53,7 @@ function draw(){
   }
 
   ball.display();
-  if (ball.alive = true){
+  if (ball.alive){
     ball.riseAndFall();
   }
   
