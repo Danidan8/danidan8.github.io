@@ -17,8 +17,8 @@ class Ball{
         this.colorG = 240;
         this.colorB = 240;
         
-        this.falling = false;
-        this.alive = true;
+        this.isFalling = false;
+        this.isAlive = true;
     }
 
     display(){
@@ -46,23 +46,23 @@ class Ball{
     }
 
     riseAndFall(){
-        if (!this.falling){
+        if (!this.isFalling){
             if (this.z < this.zMax){
                 this.z += this.speedZ;
             }else {
-                this.falling = true;
+                this.isFalling = true;
             }    
         }
-        if (this.falling){
+        if (this.isFalling){
             if (this.z > this.zMin){
                 this.z -= this.speedZ;
             }else if (dist(this.x, this.y, paddleX, paddleY) <= 40){
-                this.falling = false;
+                this.isFalling = false;
                 this.desitinationX = parseInt(random(50, width-50)); 
                 this.desitinationY = parseInt(random(50, height-50));
                 score += 1;
             }else{
-              this.alive = false;
+              this.isAlive = false;
               this.colorR = 255;
               this.colorG = 0;
               this.colorB = 0;

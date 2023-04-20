@@ -10,7 +10,7 @@ gn.init().then(function(){
     
   });
 }).catch(function(e){
-  console.log("Not Supported");
+  alert('No Gyro Detected');
 });
 
 // P5.Speech Init
@@ -25,9 +25,7 @@ let tiltThreshold = 3;
 let paddleSpeed = 2;
 
 let score = 0;
-
-// let timerAngle = 0;
-let timerAngle = 360;
+let timerAngle = 0;
 
 let ball;
 
@@ -67,19 +65,19 @@ function draw(){
   //Move Paddle
   paddle(paddleX,paddleY)
   if ((roll > tiltThreshold) && (paddleX < width-40)){
-    paddleX+=paddleSpeed;
+    paddleX += paddleSpeed;
   }else if ((roll < -tiltThreshold) && (paddleX > 40)){
-    paddleX-=paddleSpeed
+    paddleX -= paddleSpeed
   }
   if ((pitch > tiltThreshold) && (paddleY < height-40)){
-    paddleY+=paddleSpeed;
+    paddleY += paddleSpeed;
   }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
-    paddleY-=paddleSpeed;
+    paddleY -= paddleSpeed;
   }
 
   //Ball
   ball.display();
-  if (ball.alive){
+  if (ball.isAlive){
     ball.riseAndFall();
     ball.move();
   }
@@ -90,7 +88,7 @@ function draw(){
   textSize(45);
   textStyle(BOLD)
   fill(10);
-  text("Score: " + score, width/2, 50);
+  text('Score: ' + score, width/2, 50);
 
   //Timer
   noFill();
@@ -101,7 +99,7 @@ function draw(){
   noStroke();
   fill(0);
   textSize(15);
-  text("POW",width-40,40)
+  text('POW',width-40,40)
   
   if (timerAngle < 360){
     timerAngle += 1;
@@ -116,8 +114,21 @@ function draw(){
     noFill();
   }
   ellipse(20, 20, 10, 10);
-  textAlign(LEFT);
-  text("Rec",30,20);
+  textAlign(LEFT, CENTER);
+  text('Rec',30,20);
+
+  //GameOver
+  if(ball.isAlive){
+    noFill();
+    noStroke();
+  }else{
+    fill(255,0,0);
+    strokeWeight(7);
+    stroke(0);
+  }
+  textAlign(CENTER,CENTER);
+  textSize(50);
+  text('Game Over', width/2, height - 60);
 }
 
 function paddle(x,y){
