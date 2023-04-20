@@ -24,6 +24,8 @@ let paddleX,paddleY;
 let tiltThreshold = 3;
 let paddleSpeed = 2;
 
+let gameStart = false;
+
 let score = 0;
 let timerAngle = 0;
 
@@ -48,6 +50,9 @@ function setup(){
   $('body').click(function (e) { 
     e.preventDefault();
     if(timerAngle == 360 && ball.isAlive){speech.start();} 
+    if (!gameStart){
+      gameStart = true;
+    }
   });
   
   paddleX = width/2;  
@@ -73,11 +78,10 @@ function draw(){
   line(0,height/2,width,height/2);
   
   stroke(0);
-  
-  
+
   //Move Paddle
   paddle(paddleX,paddleY)
-  if(ball.isAlive){
+  if(ball.isAlive && gameStart){
     if ((roll > tiltThreshold) && (paddleX < width-40)){
       paddleX += paddleSpeed;
     }else if ((roll < -tiltThreshold) && (paddleX > 40)){
@@ -91,11 +95,23 @@ function draw(){
   }
 
   //Ball
-  ball.display();
-  if (ball.isAlive){
-    ball.riseAndFall();
-    ball.move();
+  if (gameStart){
+    ball.display();
+    if (ball.isAlive){
+      ball.riseAndFall();
+      ball.move();
+    }
   }
+
+  //Game Start
+  if(!gameStart){
+    fill(0);
+  }else{
+    noFill();
+  }
+  noStroke();
+  textSize(30);
+  text('Press Anywhere to Begin', width/2, 3*height/4);
 
   //Score
   noStroke();
@@ -116,10 +132,12 @@ function draw(){
   textSize(15);
   text('POW',width-40,40)
   
-  if (timerAngle < 360){
-    timerAngle += 1;
-  } else {
-    timerAngle = 360;
+  if(gameStart){
+    if (timerAngle < 360){
+      timerAngle += 1;
+    } else {
+      timerAngle = 360;
+    }
   }
 
   //Recordin UI
