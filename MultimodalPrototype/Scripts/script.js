@@ -53,7 +53,10 @@ function draw(){
   }
 
   ball.display();
-  ball.riseAndFall();
+  if (ball.alive = true){
+    ball.riseAndFall();
+  }
+  
 }
 
 function paddle(x,y){

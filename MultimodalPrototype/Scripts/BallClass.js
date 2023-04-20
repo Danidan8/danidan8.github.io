@@ -7,6 +7,7 @@ class Ball{
         this.zMin = 0;
         this.diameter;
         this.speedXY;
+        this.color = color(240);
         this.speedZ = 1;
         this.falling = false;
         this.alive = true;
@@ -40,13 +41,9 @@ class Ball{
             }else if (dist(this.x, this.y, paddleX, paddleY) <= 40){
                 this.falling = false;
             }else{
-                this.alive = false;
-                console.log("dead")
+              this.alive = false;
+              this.color = color(255,0,0); 
             }
         }
-    }
-    
-    die(){
-        
     }
 }
