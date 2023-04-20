@@ -51,6 +51,9 @@ function draw(){
   line(0, height, width, height);
   line(width, 0, width, height);
   line(width/2, 0, width/2, height);
+  stroke(150);
+  strokeWeight(10);
+  line(0,height/2,width,height/2);
 
   stroke(0);
   
