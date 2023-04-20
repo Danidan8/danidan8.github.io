@@ -56,7 +56,7 @@ class Ball{
         if (this.isFalling){
             if (this.z > this.zMin){
                 this.z -= this.speedZ;
-            }else if (dist(this.x, this.y, paddleX, paddleY) <= 40){
+            }else if (dist(this.x, this.y, paddleX, paddleY) <= 45){
                 soundPing.play();
                 this.isFalling = false;
                 this.desitinationX = parseInt(random(50, width-50)); 
