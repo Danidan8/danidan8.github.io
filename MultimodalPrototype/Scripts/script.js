@@ -39,9 +39,9 @@ function preload(){
 }
 
 function setup(){
-  ball = new Ball();
-
   createCanvas(windowWidth, windowHeight);
+  ball = new Ball();
+  
   speech.onError = spitError;
   speech.onStart = recStart;
   speech.onEnd = recEnd;
@@ -74,8 +74,8 @@ function draw(){
   
   
   //Move Paddle
+  paddle(paddleX,paddleY)
   if(ball.isAlive){
-    paddle(paddleX,paddleY)
     if ((roll > tiltThreshold) && (paddleX < width-40)){
       paddleX += paddleSpeed;
     }else if ((roll < -tiltThreshold) && (paddleX > 40)){
