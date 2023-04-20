@@ -22,7 +22,7 @@ speach.interimResults = true;
 //Main Code Starts Here
 let paddleX,paddleY;
 let tiltThreshold = 3;
-let movementStep = 5; 
+let movementStep = 3; 
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
@@ -37,21 +37,18 @@ function draw(){
   background(150);
   paddle(paddleX,paddleY)
   
-  if((paddleX < width-40) && (paddleX > 40)){
-    if (roll > tiltThreshold){
-      paddleX+=movementStep;
-    }else if (roll < -tiltThreshold){
-      paddleX-=movementStep
-    }
+  
+  if ((roll > tiltThreshold) && (paddleX < width-40)){
+    paddleX+=movementStep;
+  }else if ((roll < -tiltThreshold) && (paddleX > 40)){
+    paddleX-=movementStep
   }
-  if((paddleY < height-40) && (paddleY > 40))
-  if (pitch > tiltThreshold){
+  if ((pitch > tiltThreshold) && (paddleY < height-40)){
     paddleY+=movementStep;
-  }else if (pitch < -tiltThreshold){
+  }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
     paddleY-=movementStep;
   }
 }
-
 function paddle(x,y){
   rectMode(CENTER);
   strokeWeight(3);
