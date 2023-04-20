@@ -53,6 +53,7 @@ function setup(){
     if (!gameStart){gameStart = true;}
     if(!ball.isAlive){
       gameStart = false;
+      ball.isAlive = true;
       ball.x = width/2;
       ball.y = height/2;
       paddleSpeed = 2;
