@@ -60,6 +60,7 @@ function setup(){
       ball.colorG = 240;
       ball.colorB = 240;
       timerAngle = 0;
+      score = 0;
       paddleSpeed = 2;
       paddleX = width/2;
       paddleY = height/2;
