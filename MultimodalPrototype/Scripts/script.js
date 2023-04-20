@@ -10,7 +10,7 @@ gn.init().then(function(){
     
   });
 }).catch(function(e){
-  alert('No Gyro Detected');
+  alert('No Gyroscope Detected');
 });
 
 // P5.Speech Init
@@ -29,6 +29,12 @@ let timerAngle = 0;
 
 let ball;
 
+let soundSlide, soundPow, soundPing, soundGameOver;
+
+function preload(){
+  soundSlide = loadSound('../Sounds/Sliding.mp3')
+}
+
 function setup(){
   createCanvas(windowWidth, windowHeight);
   speech.onError = spitError;
@@ -39,11 +45,13 @@ function setup(){
     e.preventDefault();
     if(timerAngle == 360){speech.start();} 
   });
-
+  
   paddleX = width/2;  
   paddleY = height/2;
-
+  
   ball = new Ball();
+  
+  soundSlide.play();
 }
 
 function draw(){
