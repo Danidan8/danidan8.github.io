@@ -43,7 +43,7 @@ function preload(){
 function setup(){
   createCanvas(windowWidth, windowHeight);
   ball = new Ball();
-  
+
   speech.onError = spitError;
   speech.onStart = recStart;
   speech.onEnd = recEnd;
@@ -66,7 +66,7 @@ function setup(){
       paddleY = height/2;
     }
   });
-  
+
   paddleX = width/2;  
   paddleY = height/2;  
   
