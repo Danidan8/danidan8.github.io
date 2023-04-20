@@ -56,6 +56,9 @@ function setup(){
       ball.isAlive = true;
       ball.x = width/2;
       ball.y = height/2;
+      ball.colorR = 240;
+      ball.colorG = 240;
+      ball.colorB = 240;
       paddleSpeed = 2;
       paddleX = width/2;
       paddleY = height/2;
