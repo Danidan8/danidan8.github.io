@@ -22,7 +22,7 @@ speach.interimResults = true;
 //Main Code Starts Here
 let paddleX,paddleY;
 let tiltThreshold = 3;
-let movementStep = 3; 
+let paddleSpeed = 2; 
 
 let ball;
 
@@ -42,19 +42,21 @@ function draw(){
   paddle(paddleX,paddleY)
   //Move Paddle
   if ((roll > tiltThreshold) && (paddleX < width-40)){
-    paddleX+=movementStep;
+    paddleX+=paddleSpeed;
   }else if ((roll < -tiltThreshold) && (paddleX > 40)){
-    paddleX-=movementStep
+    paddleX-=paddleSpeed
   }
   if ((pitch > tiltThreshold) && (paddleY < height-40)){
-    paddleY+=movementStep;
+    paddleY+=paddleSpeed;
   }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
-    paddleY-=movementStep;
+    paddleY-=paddleSpeed;
   }
 
   ball.display();
+
   if (ball.alive){
     ball.riseAndFall();
+    ball.move();
   }
   
 }
