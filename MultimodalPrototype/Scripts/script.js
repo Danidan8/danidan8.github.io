@@ -19,10 +19,10 @@ speach.continuous = true;
 speach.interimResults = true;
 
 
-//Main Code Starts here
+//Main Code Starts Here
 let paddleX,paddleY;
 let tiltThreshold = 3;
-let movementStep = 1; 
+let movementStep = 5; 
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
@@ -37,16 +37,28 @@ function draw(){
   background(150);
   paddle(paddleX,paddleY)
   
-  if (roll > tiltThreshold){
-    paddleX+=movementStep;
-  }else if (roll < -tiltThreshold){
-    paddleX-=movementStep
+  if((paddleX < width-40) && (paddleX > 40)){
+    if (roll > tiltThreshold){
+      paddleX+=movementStep;
+    }else if (roll < -tiltThreshold){
+      paddleX-=movementStep
+    }
   }
+  if((paddleY < height-40) && (paddleY > 40))
   if (pitch > tiltThreshold){
     paddleY+=movementStep;
   }else if (pitch < -tiltThreshold){
     paddleY-=movementStep;
   }
+}
+
+function paddle(x,y){
+  rectMode(CENTER);
+  strokeWeight(3);
+  fill(140, 91, 0);
+  rect(x, y+30, 20, 100);
+  fill(255, 99, 99);
+  arc(x, y, 80, 85, PI + 5,TWO_PI - 5, CHORD);
 }
 
 function parseResult(){
@@ -61,11 +73,3 @@ function spitError(){
   console.log("Error");
 }
 
-function paddle(x,y){
-  rectMode(CENTER);
-  strokeWeight(3);
-  fill(140, 91, 0);
-  rect(x, y+30, 20, 100);
-  fill(255, 99, 99);
-  arc(x, y, 80, 85, PI + 5,TWO_PI - 5, CHORD);
-}
