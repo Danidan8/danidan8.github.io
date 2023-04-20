@@ -54,6 +54,8 @@ function setup(){
   paddleY = height/2;  
   
   soundPing.setVolume(0.3);
+  soundPowerUpSuccess.setVolume(0.3);
+  soundPowerUpFail.setVolume(0.2);
 }
 
 function draw(){
