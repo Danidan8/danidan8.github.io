@@ -1,9 +1,9 @@
-.output1::before{
-    content: "Yaw: ";
+* {
+    padding: 0;
+    margin: 0;
 }
-.output2::before{
-    content: "Pitch: ";
-}
-.output4::before{
-    content: "Roll: ";
-}
+/* 
+canvas {
+    width: 100vw;
+    height: 100vh;
+} */

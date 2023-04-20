@@ -1,57 +1,51 @@
 var gn = new GyroNorm();
-let x = 50
-let y = 50;
 let roll,pitch;
 
+//GyroNorm Init
 gn.init().then(function(){
   gn.start(function(data){
-
+    
     roll = data.do.gamma;
     pitch = data.do.beta;
-  
-    $('.output1').html(data.do.alpha); //Yaw
-    $('.output2').html(pitch); //Pitch
-    $('.output4').html(roll); //Roll
-
-});
-}).catch(function(e){
-    console.log("Not Supported");
+    
   });
+}).catch(function(e){
+  console.log("Not Supported");
+});
 
-//-------------------------------------------------
+// P5.Speech Init
+let speach = new p5.SpeechRec('en-US', parseResult);
+speach.continuous = true;
+speach.interimResults = true;
 
-let colorR = 153;
-let colorG = 153;
-let colotB = 153;
 
+//Main Code Starts here
+let paddleX,paddleY;
 let tiltThreshold = 3;
 let movementStep = 1; 
 
-let speach = new p5.SpeechRec('en-US', parseResult);
-speach.continuous = true;
-myRec.interimResults = true;
-
 function setup(){
-  createCanvas(100, 100);
+  createCanvas(windowWidth, windowHeight);
   speach.onError = spitError;
   speach.start();
+
+  paddleX = width/2;
+  paddleY = height/2;
 }
 
 function draw(){
-  // console.log("Roll: " + roll + " Pitch: " + pitch);
-  // console.log("X: " + x + " Y: " + y);
-  background(colorR, colorG, colotB);
-  ellipse(x, y, 10, 10);
+  background(150);
+  paddle(paddleX,paddleY)
   
   if (roll > tiltThreshold){
-    x+=movementStep;
+    paddleX+=movementStep;
   }else if (roll < -tiltThreshold){
-    x-=movementStep
+    paddleX-=movementStep
   }
   if (pitch > tiltThreshold){
-    y+=movementStep;
+    paddleY+=movementStep;
   }else if (pitch < -tiltThreshold){
-    y-=movementStep;
+    paddleY-=movementStep;
   }
 }
 
@@ -59,12 +53,19 @@ function parseResult(){
   var mostRecentWord = speach.resultString.split(' ').pop().toLowerCase();
   $('.output3').html(mostRecentWord);
   console.log(mostRecentWord);
-  if(mostRecentWord.indexOf("yellow")!==-1){colorR=238; colorG = 255; colotB = 0;}
-  else if(mostRecentWord.indexOf("red")!==-1){colorR=255; colorG = 0; colotB = 13;}
-  else if(mostRecentWord.indexOf("grey")!==-1){colorR=153; colorG = 153; colotB = 153;}
-  else if(mostRecentWord.indexOf("purple")!==-1){colorR=255; colorG = 0; colotB = 221;}
+  if(mostRecentWord.indexOf("test")!==-1){console.log("I works");}
+  else if(mostRecentWord.indexOf("yellow")!==-1){}
 }
 
 function spitError(){
   console.log("Error");
+}
+
+function paddle(x,y){
+  rectMode(CENTER);
+  strokeWeight(3);
+  fill(140, 91, 0);
+  rect(x, y+30, 20, 100);
+  fill(255, 99, 99);
+  arc(x, y, 80, 85, PI + 5,TWO_PI - 5, CHORD);
 }
