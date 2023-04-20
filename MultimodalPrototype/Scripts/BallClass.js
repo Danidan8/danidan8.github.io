@@ -28,15 +28,19 @@ class Ball{
     }
 
     move(){
-        if(this.x < this.desitinationX){
-            this.x += this.speedXY;
-        } else if (this.x > this.desitinationX){
-            this.x -= this.speedXY;
+        if (!Math.abs(this.desitinationX-this.x)<=1){
+            if(this.x < this.desitinationX){
+                this.x += this.speedXY;
+            } else if (this.x > this.desitinationX){
+                this.x -= this.speedXY;
+            }
         }
-        if(this.y < this.desitinationY){
-            this.y += this.speedXY;
-        } else if (this.y > this.desitinationY){
-            this.y -= this.speedXY;
+        if (!Math.abs(this.desitinationY-this.y)<=1){
+            if(this.y < this.desitinationY){
+                this.y += this.speedXY;
+            } else if (this.y > this.desitinationY){
+                this.y -= this.speedXY;
+            }
         }
     }
 
@@ -60,7 +64,6 @@ class Ball{
               this.colorR = 255;
               this.colorG = 0;
               this.colorB = 0;
-              console.log("dead");
             }
         }
     }
