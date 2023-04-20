@@ -14,9 +14,9 @@ gn.init().then(function(){
 });
 
 // P5.Speech Init
-let speach = new p5.SpeechRec('en-US', parseResult);
-speach.continuous = true;
-speach.interimResults = true;
+var speech = new p5.SpeechRec();
+speech.interimResults = true;
+let isRecording = false;
 
 
 //Main Code Starts Here
@@ -32,10 +32,16 @@ let ball;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
-  speach.onError = spitError;
-  speach.start();
+  speech.onError = spitError;
+  speech.onStart = recStart;
+  speech.onEnd = recEnd;
+  speech.onResult = parseResult;
+  $('body').click(function (e) { 
+    e.preventDefault();
+    if(timerAngle == 360){speech.start();} 
+  });
 
-  paddleX = width/2;
+  paddleX = width/2;  
   paddleY = height/2;
 
   ball = new Ball();
@@ -102,6 +108,15 @@ function draw(){
     timerAngle = 360;
   }
 
+  //Recordin UI
+  if(isRecording){
+    fill(255,0,0);
+  }else{
+    noFill();
+  }
+  ellipse(20, 20, 10, 10);
+  textAlign(LEFT);
+  text("Rec",30,20);
 }
 
 function paddle(x,y){
@@ -114,12 +129,15 @@ function paddle(x,y){
 }
 
 function parseResult(){
-  var mostRecentWord = speach.resultString.split(' ').pop().toLowerCase();
-  $('.output3').html(mostRecentWord);
-  console.log(mostRecentWord);
-  if(timerAngle == 360){
-    if(mostRecentWord == "test"){timerAngle = 0;}
-    else if(mostRecentWord.indexOf("yellow")!==-1){}
+  
+  let recordingResult = speech.resultString.split(' ').pop().toLowerCase();
+  console.log(recordingResult);
+
+  if(recordingResult == "fast"){
+    timerAngle = 0;
+  }
+  else if(recordingResult == "stop"){
+    timerAngle = 0;
   }
 }
 
@@ -127,3 +145,12 @@ function spitError(){
   console.log("Error");
 }
 
+function recStart(){
+  console.log("Recording Started");
+  isRecording = true;
+}
+
+function recEnd(){
+  console.log("Recording Ended");
+  isRecording = false;
+}

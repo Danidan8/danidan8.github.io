@@ -42,7 +42,7 @@ class Ball{
                 this.y -= this.speedXY;
             }
         }
-        console.log(Math.abs(this.desitinationX-this.x) + " " + Math.abs(this.desitinationY-this.y));
+        // console.log(Math.abs(this.desitinationX-this.x) + " " + Math.abs(this.desitinationY-this.y));
     }
 
     riseAndFall(){
