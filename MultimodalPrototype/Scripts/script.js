@@ -50,8 +50,14 @@ function setup(){
   $('body').click(function (e) { 
     e.preventDefault();
     if(timerAngle == 360 && ball.isAlive){speech.start();} 
-    if (!gameStart){
-      gameStart = true;
+    if (!gameStart){gameStart = true;}
+    if(!ball.isAlive){
+      gameStart = false;
+      ball.x = width/2;
+      ball.y = height/2;
+      paddleSpeed = 2;
+      paddleX = width/2;
+      paddleY = height/2;
     }
   });
   
