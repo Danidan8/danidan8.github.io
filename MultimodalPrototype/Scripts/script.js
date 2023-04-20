@@ -59,6 +59,7 @@ function setup(){
       ball.colorR = 240;
       ball.colorG = 240;
       ball.colorB = 240;
+      timerAngle = 0;
       paddleSpeed = 2;
       paddleX = width/2;
       paddleY = height/2;
@@ -166,12 +167,15 @@ function draw(){
     noStroke();
   }else{
     fill(255,0,0);
-    strokeWeight(7);
     stroke(0);
   }
   textAlign(CENTER,CENTER);
+  strokeWeight(7);
   textSize(50);
   text('Game Over', width/2, height - 60);
+  strokeWeight(4);
+  textSize(15);
+  text('Press Anywhere to Reset', width/2, height-20);
 }
 
 function paddle(x,y){
