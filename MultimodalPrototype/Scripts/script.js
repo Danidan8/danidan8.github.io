@@ -24,6 +24,8 @@ let paddleX,paddleY;
 let tiltThreshold = 3;
 let movementStep = 3; 
 
+let ball;
+
 function setup(){
   createCanvas(windowWidth, windowHeight);
   speach.onError = spitError;
@@ -31,13 +33,14 @@ function setup(){
 
   paddleX = width/2;
   paddleY = height/2;
+
+  ball = new Ball();
 }
 
 function draw(){
   background(150);
   paddle(paddleX,paddleY)
-  
-  
+  //Move Paddle
   if ((roll > tiltThreshold) && (paddleX < width-40)){
     paddleX+=movementStep;
   }else if ((roll < -tiltThreshold) && (paddleX > 40)){
@@ -48,7 +51,11 @@ function draw(){
   }else if ((pitch < -tiltThreshold) && (paddleY > 40)){
     paddleY-=movementStep;
   }
+
+  ball.display();
+  ball.riseAndFall();
 }
+
 function paddle(x,y){
   rectMode(CENTER);
   strokeWeight(3);
