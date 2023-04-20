@@ -26,7 +26,8 @@ let paddleSpeed = 2;
 
 let score = 0;
 
-let timerAngle = 0;
+// let timerAngle = 0;
+let timerAngle = 360;
 
 let ball;
 
@@ -133,11 +134,22 @@ function parseResult(){
   let recordingResult = speech.resultString.split(' ').pop().toLowerCase();
   console.log(recordingResult);
 
-  if(recordingResult == "fast"){
+  if(recordingResult == "faster"){
     timerAngle = 0;
+    paddleSpeed += 1;
+  }
+  else if(recordingResult == "slower"){
+    timerAngle = 0;
+    paddleSpeed -= 1;
   }
   else if(recordingResult == "stop"){
     timerAngle = 0;
+    ball.desitinationX = ball.x;
+    ball.desitinationY = ball.y;
+  }
+  else if(recordingResult == "fly"){
+    timerAngle = 0;
+    ball.z = ball.zMax;
   }
 }
 
