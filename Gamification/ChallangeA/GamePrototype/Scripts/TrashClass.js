@@ -73,7 +73,7 @@ class Trash {
             score += 1;
             // console.log('green');
         }else{
-            score -= 10;
+            score -= 3;
         }
     }
 }
