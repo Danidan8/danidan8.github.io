@@ -5,17 +5,17 @@ This is my personal portfolio website. You can find it [here](danidan8.github.io
 
 ## Socials:
 
-- [Itch](danidan.itch.io)
+- [Itch](https://danidan.itch.io)
 - [MyMiniFactory](https://www.myminifactory.com/users/Danidan)
-- [SoundCloud](soundcloud.com/dan-markov-906729802)
-- [LinkedIn](linkedin.com/in/dan-markov-36941a234/)
-- [YouTube](youtube.com/@Danidan8)
-- [Facebook](facebook.com/profile.php?id=100081882503732) 
+- [SoundCloud](https://soundcloud.com/dan-markov-906729802)
+- [YouTube](https://youtube.com/@Danidan8)
+- [LinkedIn](https://linkedin.com/in/dan-markov-36941a234/)
+- [Facebook](https://facebook.com/profile.php?id=100081882503732) 
 
 
 ## Hire Me:
 
-- [Upwork](upwork.com/freelancers/~0165804fef172522a1)
-- [Fiverr]( fiverr.com/danidan8)
+- [Upwork](https://upwork.com/freelancers/~0165804fef172522a1)
+- [Fiverr](https://fiverr.com/danidan8)
 
 

@@ -173,8 +173,14 @@ footer{
     z-index: 2;
     background-color: black;  
     color: white;
-    height: 300px;
+    height: fit-content;
     isolation: isolate;
+    padding: 30px;
+    position: relative;
+    top: -50px;
+
+    display: flex;
+    justify-content: space-around;
 }
 
 footer::before{
@@ -182,6 +188,6 @@ footer::before{
     position: absolute;
     inset: 0;
     z-index: -1;
-    transform: translateY(-50px);
+    transform: translateY(50px);
     background-color: black;
 }
