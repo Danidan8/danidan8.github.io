@@ -40,12 +40,12 @@
         justify-content: space-between;
         margin-inline: 3%;
         position: relative;
-        top: calc(100vh - 30vh);
+        top: calc(100vh - 25vh);
     }
 
     .scroll-icon{
         width: 7%;
-        min-width: 100px;
+        min-width: 50px;
     }
 
     /* ------------------------------------------- */
