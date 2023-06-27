@@ -83,7 +83,7 @@
 
     .portfolio-item{
         width: 30%;
-        min-width: 500px;
+        min-width: 200px;
     }
 
     .portfolio-item img{
