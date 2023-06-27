@@ -32,18 +32,15 @@ header{
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 30%;
+    min-width: 500px;
 }
 
 .scroll-icon-container{
     display: flex;
     justify-content: space-between;
-    margin-inline: 50px;
+    margin-inline: 3%;
     position: relative;
-    top: calc(100vh - 200px);
-}
-
-.scroll-icon{
-    width: 5%;
+    top: calc(100vh - 20vh);
 }
 
 
