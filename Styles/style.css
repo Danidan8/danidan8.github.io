@@ -40,7 +40,11 @@ header{
     justify-content: space-between;
     margin-inline: 3%;
     position: relative;
-    top: calc(100vh - 20vh);
+    top: calc(100vh - 25vh);
+}
+
+.scroll-icon{
+    /* width: 5%;   */
 }
 
 
