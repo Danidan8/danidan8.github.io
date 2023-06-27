@@ -15,6 +15,31 @@
 
 
     /* ------------------------------------------- */
+    /* Scroll Bar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: var(--color-orange);
+        outline: 2px solid black;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-yellow);
+        border-radius: 10px;
+        border-block: 2px solid black;
+
+    }
+  
+    ::-webkit-scrollbar-thumb:hover {
+        background: #c8c224;
+    }
+
+    
+    /* ------------------------------------------- */
     /* Header Section */
 
     header{
