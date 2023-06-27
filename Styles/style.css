@@ -91,6 +91,18 @@
         border-radius: 10% 20%;
         box-shadow: 0px 0px 5px 3px var(--shadow-color);
     }
+    .portfolio-item img:hover{
+        position: relative;
+        left: -5px;
+        top: -5px;
+        box-shadow: 5px 5px 5px 3px var(--shadow-color);
+    }
+
+    .portfolio-item img:active{
+        box-shadow: none;
+        position: static;
+    }
+    
 
     /* ------------------------------------------- */
     /* About Section */
@@ -217,6 +229,16 @@
         height: 50px;
         border: solid 3px white;
         border-radius: 50%;
+    }
+
+    footer li:hover{
+        box-shadow: 0px 0px 5px 3px white;
+        transform: scale(1.1);
+    }
+    
+    footer li:active{
+        transform: scale(1);
+        box-shadow: none;
     }
 
     footer li a img{
