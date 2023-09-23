@@ -1,6 +1,6 @@
 # Danidan Website
 
-This is my personal portfolio website. You can find it [here](danidan8.github.io).
+This is my personal portfolio website. You can find it [here](www.danidan.art).
 
 
 ## Socials:
