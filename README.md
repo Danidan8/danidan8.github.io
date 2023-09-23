@@ -1,6 +1,6 @@
 # Danidan Website
 
-This is my personal portfolio website. You can find it [here](www.danidan.art).
+This is my personal portfolio website. You can find it [here](https://www.danidan.art).
 
 
 ## Socials:
