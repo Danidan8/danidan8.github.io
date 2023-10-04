@@ -34,6 +34,6 @@ $('#SubmitButton').click(function (e) {
         textAlign(CENTER)
         textSize(40)
         noStroke()
-        text("Unexpected Input", 250, 400)
+        text("Unexpected Input", 250, 250)
     }
 });
