@@ -2,9 +2,7 @@
 function setup(){
     createCanvas(500, 500);
     
-    generateNum(1,2,3,4)
-
-    frameRate(15)
+    generateNum(1,2,3,4);    
 }
 
 $('#RandomizeButton').click(function (e) { 
@@ -45,9 +43,15 @@ var animate = false
 
 $('#AnimateButton').click(function (e) { 
     e.preventDefault();
+    
+    var currentFrameRate = $('#AnimFPS').val();
+    console.log(currentFrameRate)
+    
     animate = !animate
     if (animate){
         $('#AnimateButton').html('Stop Animation');
+        frameRate(parseInt(currentFrameRate))
+        console.log("EFDJJFFSFAJFH")
     }else{
         $('#AnimateButton').html('Start Animation');
     }
@@ -58,4 +62,6 @@ function draw(){
         clear();
         generateRandomNum();
     }
+
+    $('#AnimFPSLabel').html('Anim FPS: ' + $('#AnimFPS').val());
 }
