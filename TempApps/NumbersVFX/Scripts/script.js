@@ -1,9 +1,10 @@
 
-
 function setup(){
     createCanvas(500, 500);
     
     generateNum(1,2,3,4)
+
+    frameRate(15)
 }
 
 $('#RandomizeButton').click(function (e) { 
@@ -37,3 +38,24 @@ $('#SubmitButton').click(function (e) {
         text("Unexpected Input", 250, 250)
     }
 });
+
+//Anims
+
+var animate = false
+
+$('#AnimateButton').click(function (e) { 
+    e.preventDefault();
+    animate = !animate
+    if (animate){
+        $('#AnimateButton').html('Stop Animation');
+    }else{
+        $('#AnimateButton').html('Start Animation');
+    }
+});
+
+function draw(){
+    if (animate){
+        clear();
+        generateRandomNum();
+    }
+}
