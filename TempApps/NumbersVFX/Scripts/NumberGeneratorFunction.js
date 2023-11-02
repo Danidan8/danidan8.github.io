@@ -14,7 +14,8 @@ function generateNum(thousands, hundreds, tens, ones) {
   var xPos = 250;
   var yPos = 250;
 
-  stroke(0);
+  stroke($('#ColorPicker').val());
+  // console.log($('#ColorPicker').val());
   strokeWeight(10);
   line(xPos, yPos - 150, xPos, yPos + 150);
   
