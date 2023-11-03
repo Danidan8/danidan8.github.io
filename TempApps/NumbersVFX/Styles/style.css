@@ -28,3 +28,9 @@
     flex-wrap: wrap;
     width: 250px    ;
 }
+
+.container{
+   display: inherit;
+   gap: inherit;
+   justify-content: inherit;
+}

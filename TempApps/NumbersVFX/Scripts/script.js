@@ -51,4 +51,5 @@ function draw(){
 
     // swastika = !swastika
     $('#AnimFPSLabel').html('Anim FPS: ' + $('#AnimFPS').val());
+    $('#ThicknessLabel').html('Thickness: ' + $('#Thickness').val());
 }
