@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Interactive Map Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Mapbox -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+  <!-- Scrollama -->
+  <script src="https://unpkg.com/scrollama"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #map {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #story {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      height: 100vh; /* full screen sections */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      font-size: 20px;
+      background: yellowgreen;
+      position: relative;
+      left: -100%;
+      width: 200px;
+      /* border: 1px solid black; */
+    }
+
+    .step.active {
+      background: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div id="story">
+  <div id="features">
+    <div class="step" id="sofia">
+      <h2>Sofia</h2>
+      <p>Capital of Bulgaria.</p>
+    </div>
+
+    <div class="step" id="istanbul">
+      <h2>Istanbul</h2>
+      <p>Bridge between Europe and Asia.</p>
+    </div>
+
+    <div class="step" id="athens">
+      <h2>Athens</h2>
+      <p>Ancient capital of Greece.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 🔑 PUT YOUR TOKEN HERE
+  mapboxgl.accessToken = "pk.eyJ1IjoiZGFuaWRhbjgiLCJhIjoiY21ueGhxd251MDJmbjJ6cXBlZW41enZ6OCJ9.q3-5xUitjgO_CTNNz7aV9g";
+
+  const map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/light-v11",
+    center: [23.3219, 42.6977],
+    zoom: 5
+  });
+
+  // ❌ Disable all interactions (fix scroll issue)
+  map.scrollZoom.disable();
+  map.dragPan.disable();
+  map.boxZoom.disable();
+  map.doubleClickZoom.disable();
+  map.touchZoomRotate.disable();
+
+  const chapters = [
+    {
+      id: "sofia",
+      location: {
+        center: [23.3219, 42.6977],
+        zoom: 10,
+        pitch: 30,
+        bearing: 0
+      }
+    },
+    {
+      id: "istanbul",
+      location: {
+        center: [28.9784, 41.0082],
+        zoom: 10,
+        pitch: 45,
+        bearing: 20
+      }
+    },
+    {
+      id: "athens",
+      location: {
+        center: [23.7275, 37.9838],
+        zoom: 10,
+        pitch: 30,
+        bearing: 0
+      }
+    }
+  ];
+
+  const scroller = scrollama();
+
+  function handleStepEnter(response) {
+    const chapter = chapters.find(c => c.id === response.element.id);
+
+    document.querySelectorAll(".step").forEach(step => {
+      step.classList.remove("active");
+    });
+
+    response.element.classList.add("active");
+
+    map.flyTo({
+      ...chapter.location,
+      duration: 2000
+    });
+  }
+
+  function handleStepExit(response) {
+    // Reset to Sofia when scrolling above first section
+    if (response.direction === "up" && response.index === 0) {
+      map.flyTo({
+        center: [23.3219, 42.6977],
+        zoom: 10,
+        pitch: 30,
+        bearing: 0,
+        duration: 2000
+      });
+    }
+  }
+
+  function init() {
+    scroller
+      .setup({
+        step: ".step",
+        offset: 0.5
+      })
+      .onStepEnter(handleStepEnter)
+      .onStepExit(handleStepExit);
+
+    window.addEventListener("resize", scroller.resize);
+  }
+
+  map.on("load", init);
+</script>
+
+</body>
+</html>
