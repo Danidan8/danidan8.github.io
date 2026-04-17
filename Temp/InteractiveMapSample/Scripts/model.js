@@ -1,134 +1,113 @@
-// // 3D Model Layer Configuration
-// // This uses the map created in script.js
 
-// // parameters to ensure the model is georeferenced correctly on the map
-// const modelOrigin = [32.2843, 31.2565];
-// const modelAltitude = 0;
-// const modelRotate = [0, 0, 0];
+// parameters to ensure the model is georeferenced correctly on the map
+const modelOrigin = [32.34008, 31.24698];
+const modelAltitude = 0;
+const modelRotate = [0, 0, -0.5];
 
-// const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
-//     modelOrigin,
-//     modelAltitude
-// );
+const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+    modelOrigin,
+    modelAltitude
+);
 
-// // transformation parameters to position, rotate and scale the 3D model onto the map
-// const modelTransform = {
-//     translateX: modelAsMercatorCoordinate.x,
-//     translateY: modelAsMercatorCoordinate.y,
-//     translateZ: modelAsMercatorCoordinate.z,
-//     rotateX: modelRotate[0],
-//     rotateY: modelRotate[1],
-//     rotateZ: modelRotate[2],
-//     /* Since the 3D model is in real world meters, a scale transform needs to be
-//         * applied since the CustomLayerInterface expects units in MercatorCoordinates.
-//         */
-//     scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
-// };
+// transformation parameters to position, rotate and scale the 3D model onto the map
+const modelTransform = {
+    translateX: modelAsMercatorCoordinate.x,
+    translateY: modelAsMercatorCoordinate.y,
+    translateZ: modelAsMercatorCoordinate.z,
+    rotateX: modelRotate[0],
+    rotateY: modelRotate[1],
+    rotateZ: modelRotate[2],
+    /* Since the 3D model is in real world meters, a scale transform needs to be
+        * applied since the CustomLayerInterface expects units in MercatorCoordinates.
+        */
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+};
 
-// const THREE = window.THREE;
+const THREE = window.THREE;
 
-// // configuration of the custom layer for a 3D model per the CustomLayerInterface
-// const customLayer = {
-//     id: '3d-model',
-//     type: 'custom',
-//     renderingMode: '3d',
-//     onAdd: function (map, gl) {
-//         this.camera = new THREE.Camera();
-//         this.scene = new THREE.Scene();
+// configuration of the custom layer for a 3D model per the CustomLayerInterface
+const customLayer = {
+    id: '3d-model',
+    type: 'custom',
+    renderingMode: '3d',
+    onAdd: function (map, gl) {
+        this.camera = new THREE.Camera();
+        this.scene = new THREE.Scene();
 
-//         // create two three.js lights to illuminate the model
-//         const directionalLight = new THREE.DirectionalLight(0xffffff);
-//         directionalLight.position.set(0, -70, 100).normalize();
-//         this.scene.add(directionalLight);
+        // create two three.js lights to illuminate the model
+        const directionalLight = new THREE.DirectionalLight(0xffffff);
+        directionalLight.position.set(0, -70, 100).normalize();
+        this.scene.add(directionalLight);
 
-//         const directionalLight2 = new THREE.DirectionalLight(0xffffff);
-//         directionalLight2.position.set(0, 70, 100).normalize();
-//         this.scene.add(directionalLight2);
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+        directionalLight2.position.set(0, 70, 100).normalize();
+        this.scene.add(directionalLight2);
 
-//         // use the three.js GLTF loader to add the 3D model to the three.js scene
-//         const loader = new THREE.GLTFLoader();
-//         loader.load(
-//             'Files/3D/Fireboat.gltf',
-//             (gltf) => {
-//                 this.scene.add(gltf.scene);
-//             },
-//             undefined,
-//             (error) => {
-//                 console.error('Error loading 3D model:', error);
-//             }
-//         );
-//         this.map = map;
+        // use the three.js GLTF loader to add the 3D model to the three.js scene
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            'Files/3D/Fireboat.gltf',
+            (gltf) => {
+                this.scene.add(gltf.scene);
+            },
+            undefined,
+            (error) => {
+                console.error('Error loading 3D model:', error);
+            }
+        );
+        this.map = map;
 
-//         // use the Mapbox GL JS map canvas for three.js
-//         this.renderer = new THREE.WebGLRenderer({
-//             canvas: map.getCanvas(),
-//             context: gl,
-//             antialias: true
-//         });
+        // use the Mapbox GL JS map canvas for three.js
+        this.renderer = new THREE.WebGLRenderer({
+            canvas: map.getCanvas(),
+            context: gl,
+            antialias: true
+        });
 
-//         this.renderer.autoClear = false;
-//     },
-//     render: function (gl, matrix) {
-//         const rotationX = new THREE.Matrix4().makeRotationAxis(
-//             new THREE.Vector3(1, 0, 0),
-//             modelTransform.rotateX
-//         );
-//         const rotationY = new THREE.Matrix4().makeRotationAxis(
-//             new THREE.Vector3(0, 1, 0),
-//             modelTransform.rotateY
-//         );
-//         const rotationZ = new THREE.Matrix4().makeRotationAxis(
-//             new THREE.Vector3(0, 0, 1),
-//             modelTransform.rotateZ
-//         );
+        this.renderer.autoClear = false;
+    },
+    render: function (gl, matrix) {
+        const rotationX = new THREE.Matrix4().makeRotationAxis(
+            new THREE.Vector3(1, 0, 0),
+            modelTransform.rotateX
+        );
+        const rotationY = new THREE.Matrix4().makeRotationAxis(
+            new THREE.Vector3(0, 1, 0),
+            modelTransform.rotateY
+        );
+        const rotationZ = new THREE.Matrix4().makeRotationAxis(
+            new THREE.Vector3(0, 0, 1),
+            modelTransform.rotateZ
+        );
 
-//         const m = new THREE.Matrix4().fromArray(matrix);
-//         const l = new THREE.Matrix4()
-//             .makeTranslation(
-//                 modelTransform.translateX,
-//                 modelTransform.translateY,
-//                 modelTransform.translateZ
-//             )
-//             .scale(
-//                 new THREE.Vector3(
-//                     modelTransform.scale,
-//                     -modelTransform.scale,
-//                     modelTransform.scale
-//                 )
-//             )
-//             .multiply(rotationX)
-//             .multiply(rotationY)
-//             .multiply(rotationZ);
+        const m = new THREE.Matrix4().fromArray(matrix);
+        const l = new THREE.Matrix4()
+            .makeTranslation(
+                modelTransform.translateX,
+                modelTransform.translateY,
+                modelTransform.translateZ
+            )
+            .scale(
+                new THREE.Vector3(
+                    modelTransform.scale,
+                    -modelTransform.scale,
+                    modelTransform.scale
+                )
+            )
+            .multiply(rotationX)
+            .multiply(rotationY)
+            .multiply(rotationZ);
 
-//         this.camera.projectionMatrix = m.multiply(l);
-//         this.renderer.resetState();
-//         this.renderer.render(this.scene, this.camera);
-//         this.map.triggerRepaint();
-//     }
-// };
+        this.camera.projectionMatrix = m.multiply(l);
+        this.renderer.resetState();
+        this.renderer.render(this.scene, this.camera);
+        this.map.triggerRepaint();
+    }
+};
 
-// // Add the custom layer when the map is ready (reuse the load event from script.js)
-// // Wrap in a function to ensure window.map exists (for defer script loading)
-// function initializeModel() {
-//     if (!window.map) {
-//         // Map not ready yet, defer until it is
-//         setTimeout(initializeModel, 100);
-//         return;
-//     }
-    
-//     window.map.on('style.load', () => {
-//         if (!window.map.getLayer('3d-model')) {
-//             window.map.addLayer(customLayer);
-//         }
-//     });
-    
-//     // If style is already loaded, add layer immediately
-//     if (window.map.isStyleLoaded()) {
-//         if (!window.map.getLayer('3d-model')) {
-//             window.map.addLayer(customLayer);
-//         }
-//     }
-// }
-
-// // Call after a brief delay to ensure script.js has run
-// setTimeout(initializeModel, 100);
+// Add the custom layer when the map is ready
+window.map.on('style.load', () => {
+    if (!window.map.getLayer('3d-model')) {
+      window.map.addLayer(customLayer);
+    }
+  });
