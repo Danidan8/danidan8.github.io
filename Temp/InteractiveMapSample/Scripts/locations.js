@@ -21,7 +21,7 @@ const chapters = [
     {
       id: "portSaid",
       location: {
-        center: [32.31962, 31.22315],
+        center: [32.32694, 31.23543],
         zoom: 13,
         pitch: 25,
         bearing: 0

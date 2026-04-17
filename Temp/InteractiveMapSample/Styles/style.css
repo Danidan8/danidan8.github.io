@@ -14,8 +14,14 @@ body {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
+      max-width: 300px;
+      margin: 0;
+      margin-left: 2%;
+    }
+
+    #features {
+      position: relative;
+      width: 100%;
     }
 
     .step {
@@ -25,13 +31,58 @@ body {
       justify-content: center;
       padding: 40px;
       font-size: 20px;
-      background: yellowgreen;
+      background: rgba(154, 205, 50, 0.9);
       position: relative;
-      left: -100%;
-      width: 200px;
-      /* border: 1px solid black; */
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .step.active {
-      background: yellowgreen;
+      background: rgba(154, 205, 50, 0.9);
+    }
+
+    /* Tablet screens */
+    @media (max-width: 1024px) {
+      .step {
+        padding: 30px;
+        font-size: 18px;
+      }
+    }
+
+    /* Mobile screens */
+    @media (max-width: 768px) {
+      .step {
+        padding: 25px;
+        font-size: 16px;
+        min-height: 80vh;
+      }
+
+      .step h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .step p {
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+
+    /* Small mobile screens */
+    @media (max-width: 480px) {
+      .step {
+        padding: 20px;
+        font-size: 14px;
+        min-height: 60vh;
+      }
+
+      .step h2 {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+
+      .step p {
+        line-height: 1.3;
+      }
     }
