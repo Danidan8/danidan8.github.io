@@ -3,7 +3,7 @@
 
   window.map = new mapboxgl.Map({
     container: "map",
-    style: "mapbox://styles/mapbox/satellite-streets-v12",
+    style: "mapbox://styles/mapbox/satellite-v9",
     // style: "mapbox://styles/mapbox/light-v11",
     // center: [34.77585, 32.09647],
     center: [32.2843, 31.2565],
@@ -88,7 +88,7 @@
 // This uses the map created in script.js
 
 // parameters to ensure the model is georeferenced correctly on the map
-const modelOrigin = [32.33877, 31.24592];
+const modelOrigin = [32.34008, 31.24698];
 const modelAltitude = 0;
 const modelRotate = [0, 0, -0.5];
 
