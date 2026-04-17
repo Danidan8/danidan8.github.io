@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Interactive Map Sample - Standalone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Mapbox -->
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <!-- Scrollama -->
+  <script src="https://unpkg.com/scrollama"></script>
+  <!-- three.js -->
+  <script src="https://unpkg.com/three@0.126.0/build/three.min.js"></script>  
+  <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script> 
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #map {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #story {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      height: 100vh; /* full screen sections */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      font-size: 20px;
+      background: yellowgreen;
+      position: relative;
+      left: -100%;
+      width: 200px;
+      /* border: 1px solid black; */
+    }
+
+    .step.active {
+      background: yellowgreen;
+    }
+  </style>
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<div id="story">
+  <div id="features">
+      <div class="step" id="telAviv">
+        <h2>Tel Aviv</h2>
+        <p>Largest city in Israel.</p>
+      </div>
+
+      <div class="step" id="gaza">
+        <h2>Gaza</h2>
+        <p>Gaza City, Palestinian territory.</p>
+      </div>
+
+      <div class="step" id="portSaid">
+        <h2>Port Said</h2>
+        <p>Gateway to the Suez Canal.</p>
+      </div>
+  </div>
+</div>
+
+<script>
+  // ========== LOCATIONS.JS ==========
+  const chapters = [
+    {
+      id: "telAviv",
+      location: {
+        center: [34.77585, 32.09647],
+        zoom: 15,
+        pitch: 30,
+        bearing: 0
+      }
+    },
+    {
+      id: "gaza",
+      location: {
+        center: [34.45918, 31.51267],
+        zoom: 13,
+        pitch: 45,
+        bearing: 20
+      }
+    },
+    {
+      id: "portSaid",
+      location: {
+        center: [32.2843, 31.2565],
+        zoom: 13,
+        pitch: 30,
+        bearing: 0
+      }
+    }
+  ];
+
+  // ========== SCRIPT.JS ==========
+  mapboxgl.accessToken = "pk.eyJ1IjoiZGFuaWRhbjgiLCJhIjoiY21ueGhxd251MDJmbjJ6cXBlZW41enZ6OCJ9.q3-5xUitjgO_CTNNz7aV9g";
+
+  window.map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/satellite-streets-v12",
+    center: [32.2843, 31.2565],
+    zoom: 5
+  });
+
+  // Disable all interactions (fix scroll issue)
+  window.map.scrollZoom.disable();
+  window.map.dragPan.disable();
+  window.map.boxZoom.disable();
+  window.map.doubleClickZoom.disable();
+  window.map.touchZoomRotate.disable();
+
+  const scroller = scrollama();
+
+  function handleStepEnter(response) {
+    const chapter = chapters.find(c => c.id === response.element.id);
+
+    document.querySelectorAll(".step").forEach(step => {
+      step.classList.remove("active");
+    });
+
+    response.element.classList.add("active");
+
+    window.map.flyTo({
+      ...chapter.location,
+      duration: 5000
+    });
+  }
+
+  function handleStepExit(response) {
+    // Reset to Tel Aviv when scrolling above first section
+    if (response.direction === "up" && response.index === 0) {
+      window.map.flyTo({
+        center: [34.77585, 32.09647],
+        zoom: 15,
+        pitch: 30,
+        bearing: 0,
+        duration: 2000
+      });
+    }
+  }
+
+  function init() {
+    scroller
+      .setup({
+        step: ".step",
+        offset: 0.5
+      })
+      .onStepEnter(handleStepEnter)
+      .onStepExit(handleStepExit);
+
+    window.addEventListener("resize", scroller.resize);
+  }
+
+  window.map.on("load", init);
+
+  // ========== MODEL.JS ==========
+  const modelOrigin = [32.2843, 31.2565];
+  const modelAltitude = 0;
+  const modelRotate = [0, 0, 0];
+
+  const modelAsMercatorCoordinate = mapboxgl.MercatorCoordinate.fromLngLat(
+    modelOrigin,
+    modelAltitude
+  );
+
+  const modelTransform = {
+    translateX: modelAsMercatorCoordinate.x,
+    translateY: modelAsMercatorCoordinate.y,
+    translateZ: modelAsMercatorCoordinate.z,
+    rotateX: modelRotate[0],
+    rotateY: modelRotate[1],
+    rotateZ: modelRotate[2],
+    scale: modelAsMercatorCoordinate.meterInMercatorCoordinateUnits()
+  };
+
+  const THREE = window.THREE;
+
+  const customLayer = {
+    id: '3d-model',
+    type: 'custom',
+    renderingMode: '3d',
+    onAdd: function (map, gl) {
+      this.camera = new THREE.Camera();
+      this.scene = new THREE.Scene();
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff);
+      directionalLight.position.set(0, -70, 100).normalize();
+      this.scene.add(directionalLight);
+
+      const directionalLight2 = new THREE.DirectionalLight(0xffffff);
+      directionalLight2.position.set(0, 70, 100).normalize();
+      this.scene.add(directionalLight2);
+
+      const loader = new THREE.GLTFLoader();
+      loader.load(
+        'InteractiveMapSample/Files/3D/Fireboat.gltf',
+        (gltf) => {
+          this.scene.add(gltf.scene);
+        },
+        undefined,
+        (error) => {
+          console.error('Error loading 3D model:', error);
+        }
+      );
+      this.map = map;
+
+      this.renderer = new THREE.WebGLRenderer({
+        canvas: map.getCanvas(),
+        context: gl,
+        antialias: true
+      });
+
+      this.renderer.autoClear = false;
+    },
+    render: function (gl, matrix) {
+      const rotationX = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(1, 0, 0),
+        modelTransform.rotateX
+      );
+      const rotationY = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(0, 1, 0),
+        modelTransform.rotateY
+      );
+      const rotationZ = new THREE.Matrix4().makeRotationAxis(
+        new THREE.Vector3(0, 0, 1),
+        modelTransform.rotateZ
+      );
+
+      const m = new THREE.Matrix4().fromArray(matrix);
+      const l = new THREE.Matrix4()
+        .makeTranslation(
+          modelTransform.translateX,
+          modelTransform.translateY,
+          modelTransform.translateZ
+        )
+        .scale(
+          new THREE.Vector3(
+            modelTransform.scale,
+            -modelTransform.scale,
+            modelTransform.scale
+          )
+        )
+        .multiply(rotationX)
+        .multiply(rotationY)
+        .multiply(rotationZ);
+
+      this.camera.projectionMatrix = m.multiply(l);
+      this.renderer.resetState();
+      this.renderer.render(this.scene, this.camera);
+      this.map.triggerRepaint();
+    }
+  };
+
+  window.map.on('style.load', () => {
+    if (!window.map.getLayer('3d-model')) {
+      window.map.addLayer(customLayer);
+    }
+  });
+</script>
+
+</body>
+</html>
