@@ -17,25 +17,28 @@
 /* ------------------------------------------- */
 /* Scroll Bar */
 ::-webkit-scrollbar {
-    width: 10px;
-
+    width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-orange);
-    outline: 2px solid black;
-    border-radius: 10px;
+    background: #d99000;
+    border-left: 2px solid #8a5b00;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-yellow);
-    border-radius: 10px;
-    border-block: 2px solid black;
-
+    background: linear-gradient(180deg, var(--color-yellow), var(--color-orange));
+    border: 2px solid #8a5b00;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px #fff86a, 0 1px 3px var(--shadow-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #c8c224;
+    background: linear-gradient(180deg, #fff86a, #e6a900);
+}
+
+* {
+    scrollbar-color: var(--color-yellow) #d99000;
+    scrollbar-width: medium;
 }
 
 
@@ -88,8 +91,17 @@ h1{
 }
 h2{
     font-size: 3rem;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     text-align: center;
+}
+
+.section-description{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-inline: auto;
+    max-width: 70vw;
+    font-family: 'Belanosima', sans-serif;
 }
 
 .portfolio-container{
@@ -102,7 +114,7 @@ h2{
 .portfoilio-flex-container{
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
@@ -113,19 +125,27 @@ h2{
 
 .portfolio-item img{
     width: 100%;
-    border-radius: 10% 20%;
+    border-radius: 30px 60px;
     box-shadow: 0px 0px 5px 3px var(--shadow-color);
+    transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 .portfolio-item img:hover{
-    position: relative;
-    left: -5px;
-    top: -5px;
-    box-shadow: 5px 5px 5px 3px var(--shadow-color);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 6px 8px 10px 3px var(--shadow-color);
+    filter: saturate(1.08) brightness(1.04);
 }
 
 .portfolio-item img:active{
+    transform: translateY(0) scale(1);
     box-shadow: none;
-    position: static;
+}
+
+.portfolio-description{
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'Belanosima', sans-serif;
 }
 
 
@@ -179,8 +199,6 @@ div.about-flex-container{
     font-size: 1.5rem;
     font-family: 'Belanosima', sans-serif;
 }
-
-
 
 .skills{
     margin-top: 30px;
@@ -255,11 +273,13 @@ footer li{
     height: 50px;
     border: solid 3px white;
     border-radius: 50%;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 footer li:hover{
-    box-shadow: 0px 0px 5px 3px white;
-    transform: scale(1.1);
+    border-color: var(--color-yellow);
+    box-shadow: 0 0 0 3px #fff92e33, 0 0 14px 3px var(--color-yellow);
+    transform: translateY(-3px) scale(1.06);
 }
 
 footer li:active{
