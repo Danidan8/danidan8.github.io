@@ -282,6 +282,10 @@ footer li:hover{
     transform: translateY(-3px) scale(1.06);
 }
 
+footer li:hover a img{
+    filter: brightness(0) saturate(100%) invert(91%) sepia(100%) saturate(1515%) hue-rotate(1deg) brightness(104%) contrast(103%);
+}
+
 footer li:active{
     transform: scale(1);
     box-shadow: none;
