@@ -140,14 +140,46 @@ h2{
     box-shadow: none;
 }
 
-.portfolio-description{
-    font-size: 1.2rem;
+.portfolio-description {
     margin-top: 10px;
     margin-bottom: 30px;
     border-radius: 20px;
     /* min-height: 250px; */
-    background-color: #00000015;
+    background-color: #ffffff90;
     padding: 20px;
+}
+
+.portfolio-grid-container{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    /* align-items: center; */
+    gap: 7px 0px;
+    
+}
+
+.portfolio-grid-container p{
+    font-size: 1.2rem;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.portfolio-description b
+{
+    font-size: 1.1rem;
+    color: #444;
+    font-family: 'MedievalSharp';
+}
+
+.portfolio-description>b{
+    color: #000;
+    display: block;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+#more-games{
+    text-align: center;
+    font-size: 1.4rem;
     font-family: 'Belanosima', sans-serif;
 }
 
@@ -201,6 +233,9 @@ div.about-flex-container{
 .about-text{
     font-size: 1.5rem;
     font-family: 'Belanosima', sans-serif;
+    line-height: 1.5;
+    text-align: justify;
+    padding-right: 30px;
 }
 
 .skills{
@@ -225,6 +260,15 @@ h3{
     margin-bottom: 10px;
 }
 
+.skills ul *{
+    font-family: 'Belanosima', sans-serif;
+}
+
+.hard-skills li{
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    column-gap: 10px;
+}
 
 /* ------------------------------------------- */
 /* Footer Section */
@@ -302,3 +346,4 @@ footer li a img{
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
+
