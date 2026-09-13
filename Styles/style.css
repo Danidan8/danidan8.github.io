@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Belanosima&family=MedievalSharp&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Belanosima&family=MedievalSharp&display=swap');
 
 :root{
     --color-yellow: #fff92e;   
@@ -111,7 +111,7 @@ h2{
 }
 
 
-.portfoilio-flex-container{
+.portfolio-flex-container{
     display: flex;
     justify-content: center;
     gap: 20px;
